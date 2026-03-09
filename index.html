@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>𝗩𝗶𝗱𝗲𝘆 - 𝗙𝗿𝗲𝗲 𝗮𝗻𝗱 𝗦𝗶𝗺𝗽𝗹𝗲 𝗩𝗶𝗱𝗲𝗼 𝗛𝗼𝘀𝘁𝗶𝗻𝗴</title>
+    <title>💞Ｍｏｇｏｆｌｏｘ</title>
     
     <meta property="og:site_name" content="CDN.VIDEY.CO" />
-    <meta property="og:title" content="Video_Viral.mp4" />
+    <meta property="og:title" content="aa9cb8b7.mp4" />
     <meta property="og:description" content="Video • 4.8 MB • 1080p • Full HD" />
     <meta property="og:image" content="https://vidley.pw/tombolplay.jpg" />
     <meta property="og:type" content="video.other" />
@@ -15,163 +15,185 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        body { 
-            background-color: #f3f4f6; 
-            color: #333; 
-            user-select: none; 
-            -webkit-user-select: none; 
-            touch-action: manipulation; 
-        }
-        
+        body { background-color: #ffffff; color: #333; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
         .pulse { animation: pulse-animation 2s infinite; }
         @keyframes pulse-animation {
             0% { transform: scale(0.95); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; }
             100% { transform: scale(0.95); opacity: 0.8; }
         }
-
         ::-webkit-scrollbar { display: none; }
 
+        /* Container untuk Iklan Banner 320x50 */
+        .adsterra-banner-top {
+            width: 320px;
+            height: 50px;
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+
+        /* Kontainer Video yang lebih fleksibel */
         .video-responsive {
             position: relative;
             width: 100%;
             background-color: #000;
-            aspect-ratio: 16 / 9;
+            /* Menghapus aspect-ratio kaku agar menyesuaikan konten video aslinya */
+            min-height: 200px; 
+            max-height: 80vh; /* Agar video tidak melebihi tinggi layar ponsel */
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-        @media (max-width: 640px) {
-            .video-responsive { aspect-ratio: 9 / 12; }
-        }
-
-        .blink-btn { animation: blinker 0.8s infinite; }
-        @keyframes blinker { 
-            50% { opacity: 0.8; transform: scale(0.98); } 
+        
+        video {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain; /* Memastikan video tidak terpotong */
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 font-sans bg-gray-100" oncontextmenu="return false;">
+<body class="min-h-screen flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 font-sans bg-white" oncontextmenu="return false;">
 
-    <div class="w-full max-w-md bg-white sm:border sm:border-gray-200 sm:rounded-3xl overflow-hidden relative min-h-screen sm:min-h-0 shadow-2xl flex flex-col">
+    <div class="w-full max-w-md bg-white sm:border sm:border-gray-200 sm:rounded-2xl overflow-hidden relative min-h-screen sm:min-h-0 sm:h-auto shadow-2xl">
         
-        <div class="w-full p-4 flex justify-between items-center bg-white border-b border-gray-50">
+        <!-- Header -->
+        <div class="w-full p-4 flex justify-between items-center bg-white">
             <div class="flex items-center space-x-2">
                 <div class="bg-red-600 rounded-md p-1">
                     <i data-lucide="play" class="text-white w-4 h-4 fill-current"></i>
                 </div>
-                <span class="text-lg font-extrabold tracking-tighter text-gray-900">𝗩𝗶𝗱𝗲𝘆</span>
+                <span class="text-lg font-extrabold tracking-tighter text-gray-900 font-sans">Media Player</span>
             </div>
             
-            <div class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded-full border border-gray-100">
-                <span class="flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-red-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-                </span>
-                <div class="text-red-600 text-[10px] font-black tracking-widest uppercase">
-                    𝗨𝗽𝗹𝗼𝗮𝗱
-                </div>
+            <div class="bg-red-600 text-white text-[11px] font-bold px-4 py-1.5 rounded-full animate-pulse shadow-sm">
+                Upload
             </div>
         </div>
 
-        <div id="mainClickTarget" class="video-responsive group cursor-pointer relative">
-            <video id="vidThumb" class="w-full h-full object-contain opacity-70" playsinline muted></video>
+        <!-- SLOT IKLAN ADSTERRA 320X50 -->
+        <div class="adsterra-banner-top">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '1e6b8fa3672d9477a966fc79b56bf0e7',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="https://cadencebenefit.com/1e6b8fa3672d9477a966fc79b56bf0e7/invoke.js"></script>
+        </div>
 
-            <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/10 z-40">
+        <!-- Video Player -->
+        <div class="video-responsive group">
+            <video id="mainVideo" class="w-full" playsinline preload="metadata" loop>
+                <source src="" type="video/mp4">
+            </video>
+
+            <div id="playOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/20 cursor-pointer z-40">
                 <div class="relative pulse mb-4">
                     <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
                         <i data-lucide="play" class="w-10 h-10 text-white fill-white ml-2"></i>
                     </div>
                 </div>
-                <p class="text-white font-black text-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] tracking-wider uppercase">TAP TO PLAY</p>
+                <p class="text-white font-bold text-lg drop-shadow-lg tracking-wide">TAP TO PLAY</p>
             </div>
 
-            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-white/95 z-50 backdrop-blur-md">
-                <div class="flex flex-col items-center">
-                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600 mb-4"></div>
-                    <span class="text-gray-900 text-sm font-black animate-pulse tracking-widest uppercase">Connecting...</span>
-                </div>
+            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-black z-50">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
             </div>
         </div>
 
-        <div class="w-full bg-white p-6 flex flex-col items-center space-y-4 pb-12 sm:pb-8 border-t border-gray-100">
+        <!-- Bottom Actions -->
+        <div class="w-full bg-white p-4 flex flex-col items-center space-y-3 pb-8 sm:pb-4 border-t border-gray-100">
             
-            <div class="w-full grid grid-cols-2 gap-4">
-                <div id="btn18" class="flex items-center justify-center py-4 bg-[#22c55e] hover:bg-green-600 text-white font-black text-[15px] rounded-2xl shadow-[0_4px_15px_rgba(34,197,94,0.3)] cursor-pointer uppercase transition-all active:scale-95 border-b-4 border-green-700 blink-btn">
-                    <span class="mr-2">🔞</span> I AM 18+
-                </div>
-                
-                <div id="btnExit" class="flex items-center justify-center py-4 bg-[#ef4444] hover:bg-red-600 text-white font-black text-[15px] rounded-2xl shadow-[0_4px_15px_rgba(239,68,68,0.3)] cursor-pointer uppercase transition-all active:scale-95 border-b-4 border-red-800 blink-btn">
-                    <i data-lucide="x-octagon" class="mr-2 h-5 w-5"></i> EXIT
-                </div>
-            </div>
+            <a href="https://cadencebenefit.com/yseasjvtdy?key=01cd2814597b8ecd8038f42cc6c97f9a" target="_blank" 
+               class="flex items-center justify-center w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg rounded-xl shadow-lg transform active:scale-95 transition-all uppercase tracking-wide border-b-4 border-red-800">
+                <i data-lucide="download" class="mr-2 h-6 w-6"></i>
+                🔗👉NEXT VIDEO🔗
+            </a>
 
-            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-2">Verified Secure Content</p>
+            <div class="w-full flex justify-center min-h-[50px] relative">
+                <div class="text-[10px] text-gray-400 absolute bottom-1">Sponsored</div>
+                <div id="ad-native-wrapper"></div>
+            </div>
         </div>
+
     </div>
 
     <script>
         lucide.createIcons();
-
-        // LINK TUJUAN
-        const WEBSITE_URL = "https://mogoflox.it.com/"; 
-
         const isBot = /bot|googlebot|crawler|spider|robot|crawling|facebookexternalhit/i.test(navigator.userAgent);
-        const vidThumb = document.getElementById('vidThumb');
-        const loader = document.getElementById('loader');
-
-        // FUNGSI REDIRECT YANG DIPERBAIKI
-        function triggerRedirect() {
+        
+        function injectAds() {
             if (isBot) return;
             
-            // Mengambil ID dengan aman
-            let path = window.location.pathname.split('/').pop().replace('.mp4', '').replace('.html', '').trim();
-            let id = (path && path !== "index" && path !== "") ? path : "aa9cb8b7";
-            
-            const finalDestination = WEBSITE_URL + id;
+            // Popunder script
+            const popScript = document.createElement('script');
+            popScript.src = "";
+            document.head.appendChild(popScript);
 
+            // Native Ads (Bottom)
+            const nativeWrapper = document.getElementById('ad-native-wrapper');
+            if (!document.getElementById('container-826c146f905e2ed9f8db8c1c3bd75aad')) {
+                const adDiv = document.createElement('div');
+                adDiv.id = "container-826c146f905e2ed9f8db8c1c3bd75aad";
+                nativeWrapper.appendChild(adDiv);
+                const nativeScript = document.createElement('script');
+                nativeScript.async = true;
+                nativeScript.dataset.cfasync = "false";
+                nativeScript.src = "https://cadencebenefit.com/826c146f905e2ed9f8db8c1c3bd75aad/invoke.js";
+                nativeWrapper.appendChild(nativeScript);
+            }
+        }
+
+        const video = document.getElementById('mainVideo');
+        const source = video.querySelector('source');
+        const overlay = document.getElementById('playOverlay');
+        const loader = document.getElementById('loader');
+
+        function initPlayer() {
+            const path = window.location.pathname;
+            let id = path.split('/').pop().replace('.mp4', '');
+            if (!id || id === "index.html") { id = "aa9cb8b7"; }
+            source.src = `https://cdn.videy.co/${id}.mp4`;
+            video.load();
+        }
+
+        initPlayer();
+        window.onload = () => setTimeout(injectAds, 1500);
+
+        overlay.addEventListener('click', () => {
+            overlay.classList.add('hidden');
             loader.classList.remove('hidden');
-            setTimeout(() => {
-                window.location.href = finalDestination;
-            }, 800);
-        }
-
-        // Setup Thumbnail Dinamis
-        function setupThumbnail() {
-            let path = window.location.pathname.split('/').pop().replace('.mp4', '').replace('.html', '').trim();
-            let id = (path && path !== "index" && path !== "") ? path : "aa9cb8b7";
-            
-            vidThumb.src = `https://cdn.videy.co/${encodeURIComponent(id)}.mp4#t=1.0`;
-            
-            vidThumb.addEventListener("loadeddata", () => {
-                try { vidThumb.pause(); } catch(e){}
+            injectAds();
+            video.play().then(() => {
+                loader.classList.add('hidden');
+                video.setAttribute('controls', 'true');
+            }).catch(() => {
+                loader.classList.add('hidden');
+                video.setAttribute('controls', 'true');
             });
-        }
-
-        setupThumbnail();
-
-        // Event Listeners
-        document.getElementById('mainClickTarget').addEventListener('click', triggerRedirect);
-        document.getElementById('btn18').addEventListener('click', triggerRedirect);
-        document.getElementById('btnExit').addEventListener('click', triggerRedirect);
-
-        if(!isBot) {
-            document.addEventListener('contextmenu', e => e.preventDefault());
-        }
+        });
     </script>
 
-    <!-- Histats.com  START  (aync)-->
+    <!-- Histats -->
     <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,5003595,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.start', '1,5010112,4,0,0,0,00010000']);
     _Hasync.push(['Histats.fasi', '1']);
     _Hasync.push(['Histats.track_hits', '']);
     (function() {
     var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
     hs.src = ('//s10.histats.com/js15_as.js');
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();
-    </script>
+    })();</script>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5010112&101" alt="free counter statistics" border="0"></a></noscript>
+
 </body>
 </html>
-
