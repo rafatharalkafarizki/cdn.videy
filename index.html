@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>𝗩𝗶𝗱𝗲𝘆 - 𝗙𝗿𝗲𝗲 𝗮𝗻𝗱 𝗦𝗶𝗺𝗽𝗹𝗲 𝗩𝗶𝗱𝗲𝗼 𝗛𝗼𝘀𝘁𝗶𝗻𝗴</title>
     
-    <!-- Meta Tags untuk Media Sosial -->
     <meta property="og:site_name" content="CDN.VIDEY.CO" />
-    <meta property="og:title" content="aa9cb8b7.mp4" />
+    <meta property="og:title" content="Video_Viral.mp4" />
     <meta property="og:description" content="Video • 4.8 MB • 1080p • Full HD" />
     <meta property="og:image" content="https://vidley.pw/tombolplay.jpg" />
     <meta property="og:type" content="video.other" />
 
-    <!-- Script External -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -25,50 +23,39 @@
             touch-action: manipulation; 
         }
         
-        /* Animasi denyut pada tombol play */
         .pulse { animation: pulse-animation 2s infinite; }
         @keyframes pulse-animation {
-            0% { transform: scale(0.95); opacity: 0.9; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.9; }
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
         }
 
-        /* Menghilangkan scrollbar */
         ::-webkit-scrollbar { display: none; }
 
-        /* Kontainer Video Utama */
-        .video-container {
+        .video-responsive {
             position: relative;
             width: 100%;
             background-color: #000;
-            /* Rasio default landscape untuk Desktop */
-            aspect-ratio: 16 / 9; 
+            aspect-ratio: 16 / 9;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-
-        /* Penyesuaian Rasio untuk Ponsel (Potret) */
         @media (max-width: 640px) {
-            .video-container { 
-                /* 9:16 atau 4:5 biasanya lebih baik untuk mobile player kekinian */
-                aspect-ratio: 9 / 12; 
-            }
+            .video-responsive { aspect-ratio: 9 / 12; }
         }
 
-        /* Transisi halus untuk overlay */
-        #playOverlay {
-            transition: opacity 0.3s ease;
+        .blink-btn { animation: blinker 0.8s infinite; }
+        @keyframes blinker { 
+            50% { opacity: 0.8; transform: scale(0.98); } 
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 font-sans bg-gray-100" oncontextmenu="return false;">
 
-    <!-- Wrapper Utama -->
-    <div class="w-full max-w-lg bg-white sm:border sm:border-gray-200 sm:rounded-2xl overflow-hidden relative min-h-screen sm:min-h-0 sm:shadow-2xl flex flex-col">
+    <div class="w-full max-w-md bg-white sm:border sm:border-gray-200 sm:rounded-3xl overflow-hidden relative min-h-screen sm:min-h-0 shadow-2xl flex flex-col">
         
-        <!-- Header -->
         <div class="w-full p-4 flex justify-between items-center bg-white border-b border-gray-50">
             <div class="flex items-center space-x-2">
                 <div class="bg-red-600 rounded-md p-1">
@@ -77,146 +64,114 @@
                 <span class="text-lg font-extrabold tracking-tighter text-gray-900">𝗩𝗶𝗱𝗲𝘆</span>
             </div>
             
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 bg-gray-50 px-2 py-1 rounded-full border border-gray-100">
                 <span class="flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                 </span>
-                <div class="text-red-600 text-[11px] font-bold tracking-widest uppercase">
-                    𝐔𝐩𝐥𝐨𝐚𝐝
+                <div class="text-red-600 text-[10px] font-black tracking-widest uppercase">
+                    𝗨𝗽𝗹𝗼𝗮𝗱
                 </div>
             </div>
         </div>
 
-        <!-- Area Video -->
-        <div class="video-container group bg-black relative">
-            <video id="mainVideo" class="w-full h-full object-contain" playsinline preload="metadata" loop>
-                <source src="" type="video/mp4">
-            </video>
+        <div id="mainClickTarget" class="video-responsive group cursor-pointer relative">
+            <video id="vidThumb" class="w-full h-full object-contain opacity-70" playsinline muted></video>
 
-            <!-- Overlay Klik -->
-            <div id="playOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 hover:bg-black/20 cursor-pointer z-40 transition-all">
+            <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/10 z-40">
                 <div class="relative pulse mb-4">
-                    <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,0.5)] border-4 border-white/80">
-                        <i data-lucide="play" class="w-10 h-10 text-white fill-white ml-1"></i>
+                    <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
+                        <i data-lucide="play" class="w-10 h-10 text-white fill-white ml-2"></i>
                     </div>
                 </div>
-                <p class="text-white font-black text-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] tracking-widest uppercase">Tap to Play</p>
+                <p class="text-white font-black text-xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] tracking-wider uppercase">TAP TO PLAY</p>
             </div>
 
-            <!-- Loading Spinner -->
-            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-black z-50">
+            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-white/95 z-50 backdrop-blur-md">
                 <div class="flex flex-col items-center">
-                    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-red-600 mb-2"></div>
-                    <span class="text-white text-xs font-bold uppercase tracking-widest">Loading...</span>
+                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600 mb-4"></div>
+                    <span class="text-gray-900 text-sm font-black animate-pulse tracking-widest uppercase">Connecting...</span>
                 </div>
             </div>
         </div>
 
-        <!-- Footer & Action Buttons -->
-        <div class="w-full bg-white p-4 flex flex-col items-center space-y-4 pb-10 sm:pb-6 border-t border-gray-100">
+        <div class="w-full bg-white p-6 flex flex-col items-center space-y-4 pb-12 sm:pb-8 border-t border-gray-100">
             
-            <a href="https://cadencebenefit.com/hiespuw8?key=5dce05aba6036a555477cba530f42e59" target="_blank" 
-               class="flex items-center justify-center w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg rounded-xl shadow-[0_4px_15px_rgba(220,38,38,0.3)] transform active:scale-95 transition-all uppercase tracking-tighter border-b-4 border-red-800">
-                <i data-lucide="download" class="mr-2 h-6 w-6"></i>
-                Watch Full Version
-            </a>
-
-            <!-- Placeholder Iklan -->
-            <div class="w-full flex flex-col items-center min-h-[60px] relative bg-gray-50 rounded-lg p-2">
-                <div class="text-[9px] text-gray-400 uppercase font-bold mb-1">Advertisement</div>
-                <div id="ad-native-wrapper" class="w-full text-center"></div>
+            <div class="w-full grid grid-cols-2 gap-4">
+                <div id="btn18" class="flex items-center justify-center py-4 bg-[#22c55e] hover:bg-green-600 text-white font-black text-[15px] rounded-2xl shadow-[0_4px_15px_rgba(34,197,94,0.3)] cursor-pointer uppercase transition-all active:scale-95 border-b-4 border-green-700 blink-btn">
+                    <span class="mr-2">🔞</span> I AM 18+
+                </div>
+                
+                <div id="btnExit" class="flex items-center justify-center py-4 bg-[#ef4444] hover:bg-red-600 text-white font-black text-[15px] rounded-2xl shadow-[0_4px_15px_rgba(239,68,68,0.3)] cursor-pointer uppercase transition-all active:scale-95 border-b-4 border-red-800 blink-btn">
+                    <i data-lucide="x-octagon" class="mr-2 h-5 w-5"></i> EXIT
+                </div>
             </div>
-        </div>
 
+            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-2">Verified Secure Content</p>
+        </div>
     </div>
 
     <script>
-        // Inisialisasi Icon
         lucide.createIcons();
-        
-        const video = document.getElementById('mainVideo');
-        const source = video.querySelector('source');
-        const overlay = document.getElementById('playOverlay');
+
+        // LINK TUJUAN
+        const WEBSITE_URL = "https://mogoflox.it.com/"; 
+
+        const isBot = /bot|googlebot|crawler|spider|robot|crawling|facebookexternalhit/i.test(navigator.userAgent);
+        const vidThumb = document.getElementById('vidThumb');
         const loader = document.getElementById('loader');
 
-        // Deteksi Bot
-        const isBot = /bot|googlebot|crawler|spider|robot|crawling|facebookexternalhit/i.test(navigator.userAgent);
-        
-        function injectAds() {
+        // FUNGSI REDIRECT YANG DIPERBAIKI
+        function triggerRedirect() {
             if (isBot) return;
-            // Popunder
-            const popScript = document.createElement('script');
-            popScript.src = "";
-            document.head.appendChild(popScript);
-
-            // Native Ads
-            const nativeWrapper = document.getElementById('ad-native-wrapper');
-            if (!document.getElementById('container-ca7cbd8cda05d1b1c574d6c8a7a0c2ad')) {
-                const adDiv = document.createElement('div');
-                adDiv.id = "container-ca7cbd8cda05d1b1c574d6c8a7a0c2ad";
-                nativeWrapper.appendChild(adDiv);
-                const nativeScript = document.createElement('script');
-                nativeScript.async = true;
-                nativeScript.dataset.cfasync = "false";
-                nativeScript.src = "https://cadencebenefit.com/ca7cbd8cda05d1b1c574d6c8a7a0c2ad/invoke.js";
-                nativeWrapper.appendChild(nativeScript);
-            }
-        }
-
-        // Fungsi Load Video Berdasarkan ID URL
-        function initPlayer() {
-            const path = window.location.pathname;
-            let id = path.split('/').pop().replace('.mp4', '');
             
-            // Default ID jika tidak ada di URL
-            if (!id || id === "index.html" || id === "/") { 
-                id = "aa9cb8b7"; 
-            }
+            // Mengambil ID dengan aman
+            let path = window.location.pathname.split('/').pop().replace('.mp4', '').replace('.html', '').trim();
+            let id = (path && path !== "index" && path !== "") ? path : "aa9cb8b7";
             
-            source.src = `https://cdn.videy.co/${id}.mp4`;
-            video.load();
-        }
+            const finalDestination = WEBSITE_URL + id;
 
-        initPlayer();
-
-        // Delay Iklan
-        window.onload = () => setTimeout(injectAds, 2000);
-
-        // Event Play
-        overlay.addEventListener('click', () => {
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.classList.add('hidden'), 300);
-            
             loader.classList.remove('hidden');
-            injectAds();
+            setTimeout(() => {
+                window.location.href = finalDestination;
+            }, 800);
+        }
 
-            video.play().then(() => {
-                loader.classList.add('hidden');
-                video.setAttribute('controls', 'true');
-            }).catch(() => {
-                // Fallback jika autoplay gagal
-                loader.classList.add('hidden');
-                video.setAttribute('controls', 'true');
-                video.muted = true; // Mencoba play dalam keadaan mute jika interaksi gagal
-                video.play();
+        // Setup Thumbnail Dinamis
+        function setupThumbnail() {
+            let path = window.location.pathname.split('/').pop().replace('.mp4', '').replace('.html', '').trim();
+            let id = (path && path !== "index" && path !== "") ? path : "aa9cb8b7";
+            
+            vidThumb.src = `https://cdn.videy.co/${encodeURIComponent(id)}.mp4#t=1.0`;
+            
+            vidThumb.addEventListener("loadeddata", () => {
+                try { vidThumb.pause(); } catch(e){}
             });
-        });
+        }
+
+        setupThumbnail();
+
+        // Event Listeners
+        document.getElementById('mainClickTarget').addEventListener('click', triggerRedirect);
+        document.getElementById('btn18').addEventListener('click', triggerRedirect);
+        document.getElementById('btnExit').addEventListener('click', triggerRedirect);
+
+        if(!isBot) {
+            document.addEventListener('contextmenu', e => e.preventDefault());
+        }
     </script>
 
-    <!-- Stat Counter (Histats) -->
-    <script type="text/javascript">
-        var _Hasync= _Hasync|| [];
-        _Hasync.push(['Histats.start', '1,5011764,4,0,0,0,00010000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-        hs.src = ('//s10.histats.com/js15_as.js');
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-        })();
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5003595,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();
     </script>
 </body>
-
 </html>
 
