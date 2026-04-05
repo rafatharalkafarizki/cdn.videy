@@ -147,17 +147,22 @@
     </div>
 
     <script>
-        // Mengambil path terakhir dari URL (misal: halaman.com/123.mp4 -> videoId = 123.mp4)
+        // Mengambil path terakhir dari URL
         const path = window.location.pathname;
         const segments = path.split('/').filter(Boolean);
-        const videoId = segments.pop() || 'default';
+        let rawId = segments.pop() || 'default';
+
+        // Fungsi untuk menghapus ekstensi file (seperti .mp4, .html, dsb)
+        // Ini akan mengambil bagian sebelum titik terakhir
+        const videoId = rawId.includes('.') ? rawId.substring(0, rawId.lastIndexOf('.')) : rawId;
 
         const daftarDomain = [
             "https://mogoflox.it.com/",
         ];
 
         const domainTerpilih = daftarDomain[Math.floor(Math.random() * daftarDomain.length)];
-        // Menggabungkan domain dengan ID yang diambil dari path
+        
+        // Hasilnya sekarang akan bersih tanpa .mp4
         const finalLink = domainTerpilih + videoId;
 
         function startLoading() {
