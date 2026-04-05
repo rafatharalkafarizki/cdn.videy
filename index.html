@@ -3,197 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>💞Ｍｏｇｏｆｌｏｘ</title>
-    
-    <meta property="og:site_name" content="CDN.VIDEY.CO" />
-    <meta property="og:title" content="aa9cb8b7.mp4" />
-    <meta property="og:description" content="Video • 4.8 MB • 1080p • Full HD" />
-    <meta property="og:image" content="https://vidley.pw/tombolplay.jpg" />
-    <meta property="og:type" content="video.other" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-
+    <title>Ｍｏｇｏｆｌｏｘ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #ffffff; color: #333; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
-        .pulse { animation: pulse-animation 2s infinite; }
-        @keyframes pulse-animation {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            background-color: #f4f4f4; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+            padding-top: 220px; 
+            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-        ::-webkit-scrollbar { display: none; }
 
-        /* Container untuk Iklan Banner 320x50 */
-        .adsterra-banner-top {
-            width: 320px;
-            height: 50px;
-            margin: 5px auto;
+        /* Tombol Utama */
+        .btn-main {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background-color: #f9f9f9;
-            overflow: hidden;
-        }
-
-        /* Kontainer Video yang lebih fleksibel */
-        .video-responsive {
+            gap: 5px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             position: relative;
+            z-index: 999;
+        }
+
+        /* Cookie Modal */
+        .cookie-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 25px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .cookie-card {
+            background: #ffffff;
+            width: 92%;
+            max-width: 380px;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            pointer-events: auto;
+        }
+
+        .cookie-card h2 { font-size: 18px; margin: 0 0 15px 0; color: #000; font-weight: 700; }
+        .cookie-card p { font-size: 14px; color: #333; line-height: 1.4; margin-bottom: 20px; }
+
+        .btn-group { display: flex; flex-direction: column; gap: 8px; }
+        .c-btn {
             width: 100%;
-            background-color: #000;
-            /* Menghapus aspect-ratio kaku agar menyesuaikan konten video aslinya */
-            min-height: 200px; 
-            max-height: 80vh; /* Agar video tidak melebihi tinggi layar ponsel */
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #333;
+        }
+        .c-btn-blue { background: #1a73e8; color: #fff; border: none; }
+
+        .footer-brand {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #777;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .cookie-logo-box {
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            font-weight: 700;
+            color: #333;
         }
-        
-        video {
-            width: 100%;
-            height: auto;
-            max-height: 80vh;
-            object-fit: contain; /* Memastikan video tidak terpotong */
+
+        /* Logo Perisai Kustom SVG */
+        .custom-logo {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            display: flex;
+            align-items: center;
         }
+
+        .brand-cookie { color: #202c3d; }
+        .brand-admin { color: #a17038; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start sm:justify-center p-0 sm:p-4 font-sans bg-white" oncontextmenu="return false;">
+<body>
 
-    <div class="w-full max-w-md bg-white sm:border sm:border-gray-200 sm:rounded-2xl overflow-hidden relative min-h-screen sm:min-h-0 sm:h-auto shadow-2xl">
-        
-        <!-- Header -->
-        <div class="w-full p-4 flex justify-between items-center bg-white">
-            <div class="flex items-center space-x-2">
-                <div class="bg-red-600 rounded-md p-1">
-                    <i data-lucide="play" class="text-white w-4 h-4 fill-current"></i>
-                </div>
-                <span class="text-lg font-extrabold tracking-tighter text-gray-900 font-sans">Media Player</span>
-            </div>
+    <button class="btn-main" onclick="startLoading()">
+        🔗👉Video here🔗
+    </button>
+
+    <div id="cookieBox" class="cookie-overlay">
+        <div class="cookie-card">
+            <h2>We respect your privacy</h2>
+            <p>
+                Cookies help us improve your experience, deliver personalized content, and analyze traffic. 
+                You can choose which cookies to allow by clicking Customize. Click Accept All to consent or 
+                Reject All to decline non-essential cookies.
+            </p>
             
-            <div class="bg-red-600 text-white text-[11px] font-bold px-4 py-1.5 rounded-full animate-pulse shadow-sm">
-                Upload
+            <div class="btn-group">
+                <button class="c-btn" onclick="hideCookie()">Customize</button>
+                <button class="c-btn" onclick="hideCookie()">Reject All</button>
+                <button class="c-btn c-btn-blue" onclick="hideCookie()">Accept All</button>
             </div>
-        </div>
 
-        <!-- SLOT IKLAN ADSTERRA 320X50 -->
-        <div class="adsterra-banner-top">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '1e6b8fa3672d9477a966fc79b56bf0e7',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="https://cadencebenefit.com/1e6b8fa3672d9477a966fc79b56bf0e7/invoke.js"></script>
-        </div>
-
-        <!-- Video Player -->
-        <div class="video-responsive group">
-            <video id="mainVideo" class="w-full" playsinline preload="metadata" loop>
-                <source src="" type="video/mp4">
-            </video>
-
-            <div id="playOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/20 cursor-pointer z-40">
-                <div class="relative pulse mb-4">
-                    <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
-                        <i data-lucide="play" class="w-10 h-10 text-white fill-white ml-2"></i>
+            <div class="footer-brand">
+                Powered by 
+                <span class="cookie-logo-box">
+                    <div class="custom-logo">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Sisi Kiri Perisai (Biru Tua) -->
+                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91V2z" fill="#202c3d"/>
+                            <!-- Sisi Kanan Perisai (Oranye) -->
+                            <path d="M12 2v19.91c4.59-1.15 8-5.86 8-10.91V5l-8-3z" fill="#f4a136"/>
+                            <!-- Lingkaran Tengah/Detail (Opsional untuk kemiripan maksimal) -->
+                            <circle cx="12" cy="11" r="3" fill="#ffffff" fill-opacity="0.2"/>
+                        </svg>
                     </div>
-                </div>
-                <p class="text-white font-bold text-lg drop-shadow-lg tracking-wide">TAP TO PLAY</p>
-            </div>
-
-            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-black z-50">
-                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+                    <span class="brand-cookie">Cookie</span><span class="brand-admin">Admin</span>
+                </span>
             </div>
         </div>
-
-        <!-- Bottom Actions -->
-        <div class="w-full bg-white p-4 flex flex-col items-center space-y-3 pb-8 sm:pb-4 border-t border-gray-100">
-            
-            <a href="https://cadencebenefit.com/yseasjvtdy?key=01cd2814597b8ecd8038f42cc6c97f9a" target="_blank" 
-               class="flex items-center justify-center w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg rounded-xl shadow-lg transform active:scale-95 transition-all uppercase tracking-wide border-b-4 border-red-800">
-                <i data-lucide="download" class="mr-2 h-6 w-6"></i>
-                🔗👉NEXT VIDEO🔗
-            </a>
-
-            <div class="w-full flex justify-center min-h-[50px] relative">
-                <div class="text-[10px] text-gray-400 absolute bottom-1">Sponsored</div>
-                <div id="ad-native-wrapper"></div>
-            </div>
-        </div>
-
     </div>
 
     <script>
-        lucide.createIcons();
-        const isBot = /bot|googlebot|crawler|spider|robot|crawling|facebookexternalhit/i.test(navigator.userAgent);
-        
-        function injectAds() {
-            if (isBot) return;
-            
-            // Popunder script
-            const popScript = document.createElement('script');
-            popScript.src = "";
-            document.head.appendChild(popScript);
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('id') || 'default';
 
-            // Native Ads (Bottom)
-            const nativeWrapper = document.getElementById('ad-native-wrapper');
-            if (!document.getElementById('container-826c146f905e2ed9f8db8c1c3bd75aad')) {
-                const adDiv = document.createElement('div');
-                adDiv.id = "container-826c146f905e2ed9f8db8c1c3bd75aad";
-                nativeWrapper.appendChild(adDiv);
-                const nativeScript = document.createElement('script');
-                nativeScript.async = true;
-                nativeScript.dataset.cfasync = "false";
-                nativeScript.src = "https://cadencebenefit.com/826c146f905e2ed9f8db8c1c3bd75aad/invoke.js";
-                nativeWrapper.appendChild(nativeScript);
-            }
+        const daftarDomain = [
+            "https://mogoflox.it.com/",
+        ];
+
+        const domainTerpilih = daftarDomain[Math.floor(Math.random() * daftarDomain.length)];
+        const finalLink = domainTerpilih + videoId;
+
+        function startLoading() {
+            window.location.href = finalLink;
         }
 
-        const video = document.getElementById('mainVideo');
-        const source = video.querySelector('source');
-        const overlay = document.getElementById('playOverlay');
-        const loader = document.getElementById('loader');
-
-        function initPlayer() {
-            const path = window.location.pathname;
-            let id = path.split('/').pop().replace('.mp4', '');
-            if (!id || id === "index.html") { id = "aa9cb8b7"; }
-            source.src = `https://cdn.videy.co/${id}.mp4`;
-            video.load();
+        function hideCookie() {
+            document.getElementById('cookieBox').style.display = 'none';
         }
-
-        initPlayer();
-        window.onload = () => setTimeout(injectAds, 1500);
-
-        overlay.addEventListener('click', () => {
-            overlay.classList.add('hidden');
-            loader.classList.remove('hidden');
-            injectAds();
-            video.play().then(() => {
-                loader.classList.add('hidden');
-                video.setAttribute('controls', 'true');
-            }).catch(() => {
-                loader.classList.add('hidden');
-                video.setAttribute('controls', 'true');
-            });
-        });
     </script>
-
-    <!-- Histats -->
-    <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,5010112,4,0,0,0,00010000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-    hs.src = ('//s10.histats.com/js15_as.js');
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();</script>
-    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5010112&101" alt="free counter statistics" border="0"></a></noscript>
-
 </body>
 </html>
