@@ -1,189 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ｍｏｇｏｆｌｏｘ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Stream Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { 
-            background-color: #f4f4f4; 
-            margin: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            padding-top: 220px; 
-            height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* Tombol Utama */
-        .btn-main {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 12px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .pulse-red {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .video-placeholder {
             position: relative;
-            z-index: 999;
-        }
-
-        /* Cookie Modal */
-        .cookie-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            padding-bottom: 25px;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        .cookie-card {
-            background: #ffffff;
-            width: 92%;
-            max-width: 380px;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            pointer-events: auto;
-        }
-
-        .cookie-card h2 { font-size: 18px; margin: 0 0 15px 0; color: #000; font-weight: 700; }
-        .cookie-card p { font-size: 14px; color: #333; line-height: 1.4; margin-bottom: 20px; }
-
-        .btn-group { display: flex; flex-direction: column; gap: 8px; }
-        .c-btn {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
             cursor: pointer;
-            border: 1px solid #ddd;
-            background: #fff;
-            color: #333;
         }
-        .c-btn-blue { background: #1a73e8; color: #fff; border: none; }
-
-        .footer-brand {
-            margin-top: 15px;
-            font-size: 11px;
-            color: #777;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
         }
-
-        .cookie-logo-box {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            color: #333;
+        .video-placeholder:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.2);
         }
-
-        /* Logo Perisai Kustom SVG */
-        .custom-logo {
-            width: 16px;
-            height: 16px;
-            margin-right: 4px;
-            display: flex;
-            align-items: center;
-        }
-
-        .brand-cookie { color: #202c3d; }
-        .brand-admin { color: #a17038; }
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center min-h-screen p-4">
 
-    <button class="btn-main" onclick="startLoading()">
-        🔗👉Video here🔗
-    </button>
+    <div class="max-w-md w-full glass rounded-3xl overflow-hidden shadow-2xl">
+        <!-- Header Info -->
+        <div class="p-6 text-center border-b border-white/10">
+            <div class="inline-block px-3 py-1 bg-red-600 text-xs font-bold rounded-full mb-3 uppercase tracking-widest pulse-red">
+                Live Now
+            </div>
+            <h1 class="text-xl font-bold tracking-tight">Private Stream Access</h1>
+            <p class="text-slate-400 text-sm mt-1">Exclusive Content for Verified Users</p>
+        </div>
 
-    <div id="cookieBox" class="cookie-overlay">
-        <div class="cookie-card">
-            <h2>We respect your privacy</h2>
-            <p>
-                Cookies help us improve your experience, deliver personalized content, and analyze traffic. 
-                You can choose which cookies to allow by clicking Customize. Click Accept All to consent or 
-                Reject All to decline non-essential cookies.
-            </p>
+        <!-- Thumbnail Area -->
+        <div class="video-placeholder" onclick="handleRedirection()">
+            <img src="https://vidley.pw/tombolplay.jpg" alt="Preview Video" class="w-full h-64 object-cover opacity-80" onerror="this.src='https://via.placeholder.com/600x400/1e293b/ffffff?text=Private+Stream+Access'">
             
-            <div class="btn-group">
-                <button class="c-btn" onclick="hideCookie()">Customize</button>
-                <button class="c-btn" onclick="hideCookie()">Reject All</button>
-                <button class="c-btn c-btn-blue" onclick="hideCookie()">Accept All</button>
+            <!-- Play Button Overlay -->
+            <div class="play-icon">
+                <div class="bg-red-600 w-20 h-20 rounded-full flex items-center justify-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" class="w-10 h-10 ml-1">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
             </div>
 
-            <div class="footer-brand">
-                Powered by 
-                <span class="cookie-logo-box">
-                    <div class="custom-logo">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91V2z" fill="#202c3d"/>
-                            <path d="M12 2v19.91c4.59-1.15 8-5.86 8-10.91V5l-8-3z" fill="#f4a136"/>
-                            <circle cx="12" cy="11" r="3" fill="#ffffff" fill-opacity="0.2"/>
-                        </svg>
-                    </div>
-                    <span class="brand-cookie">Cookie</span><span class="brand-admin">Admin</span>
+            <!-- Content Tag -->
+            <div class="absolute bottom-4 left-4 bg-black/60 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tighter border border-white/20">
+                HD 1080p • 24:15
+            </div>
+            <div class="absolute bottom-4 right-4 bg-red-600 px-2 py-1 rounded text-[10px] font-bold">
+                18+
+            </div>
+        </div>
+
+        <!-- Action Area -->
+        <div class="p-8 text-center">
+            <button onclick="handleRedirection()" class="w-full py-4 bg-gradient-to-r from-red-600 to-rose-500 hover:from-red-500 hover:to-rose-400 rounded-xl font-bold text-lg shadow-lg transition-all active:scale-95 mb-4">
+                CLICK TO PLAY
+            </button>
+            
+            <div class="flex items-center justify-center gap-4 text-xs text-slate-500">
+                <span class="flex items-center gap-1">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                    245k Views
+                </span>
+                <span class="flex items-center gap-1 text-green-500">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9L9.03 9.122a1.25 1.25 0 001.938-1.07V3.5a.25.25 0 01.4-.2l4.828 3.328a1.25 1.25 0 010 2.044l-4.828 3.328a.25.25 0 01-.4-.2V11.95a1.25 1.25 0 00-1.938-1.07L2.166 15.1A.75.75 0 011 14.485V5.515a.75.75 0 011.166-.615z" clip-rule="evenodd"/></svg>
+                    Fast Stream
                 </span>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div class="bg-black/20 p-4 text-center text-[10px] text-slate-500 uppercase tracking-widest">
+            Encrypted • Secure Access • Anti-Bot Verified
+        </div>
     </div>
 
+    <!-- Adsterra Logic -->
     <script>
-        // Mengambil path terakhir dari URL
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(Boolean);
-        let rawId = segments.pop() || 'default';
+        // GANTI INI DENGAN DIRECT LINK ADSTERRA ANDA
+        const adsterraDirectLink = "https://www.highrevenuenetwork.com/your-direct-link-here";
 
-        // Fungsi untuk menghapus ekstensi file (seperti .mp4, .html, dsb)
-        // Ini akan mengambil bagian sebelum titik terakhir
-        const videoId = rawId.includes('.') ? rawId.substring(0, rawId.lastIndexOf('.')) : rawId;
-
-        const daftarDomain = [
-            "https://gostreamplaypage.blogspot.com/2026/02/convidence.html/?watch_one=",
-        ];
-
-        const domainTerpilih = daftarDomain[Math.floor(Math.random() * daftarDomain.length)];
-        
-        // Hasilnya sekarang akan bersih tanpa .mp4
-        const finalLink = domainTerpilih + videoId;
-
-        function startLoading() {
-            window.location.href = finalLink;
+        function handleRedirection() {
+            // Membuka direct link di tab baru atau tab yang sama
+            window.location.href = adsterraDirectLink;
         }
 
-        function hideCookie() {
-            document.getElementById('cookieBox').style.display = 'none';
-        }
-    </script>
-
-    <!-- Histats.com  START  (aync)-->
-    <script type="text/javascript">var _Hasync= _Hasync|| [];
-    _Hasync.push(['Histats.start', '1,5009284,4,0,0,0,00010000']);
-    _Hasync.push(['Histats.fasi', '1']);
-    _Hasync.push(['Histats.track_hits', '']);
-    (function() {
-    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-    hs.src = ('//s10.histats.com/js15_as.js');
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-    })();
+        // Contoh penempatan Social Bar Script (Placeholder)
+        // Letakkan script social bar dari dashboard Adsterra di sini jika sudah ada
     </script>
 </body>
 </html>
